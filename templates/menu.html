@@ -1,0 +1,575 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700;800&family=Kanit:wght@900&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+    <style>
+        body{
+        font-family: 'Montserrat', sans-serif;
+        }
+        
+        .topmenu{
+            width:100%;
+            margin-top:-10px;
+            display: flex;
+            position: fixed;
+            box-sizing: border-box;
+            padding: 15px 0px;
+            background-color: white;
+        }
+        
+        .topmenu > div
+        {
+         
+            width:10%;
+            margin:auto;
+        }
+        .topmenu >div:nth-child(3)
+        {
+            width: 60px;
+            margin-left: 0px;
+            padding-left: 0px;
+        }
+        .imgkfc{
+            width: 100%;
+            height: 25px;
+        }
+        .menuname{
+            text-align: center;
+        }
+        .imgsignin {
+    width: 25px; /* Set the size of the image */
+    height: 25px;
+    border-radius: 50%; /* Optional: make it circular */
+}
+        .span{
+          border-left: 0.3px solid black;
+          margin-left: 8px;
+        }
+        #divseven{
+            width:60px;
+        }
+        .kfcbox{
+            height:40px;
+        }
+        .div8{
+          display: flex;
+        }
+        .ripe{
+            margin-top: 10px;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+      
+      
+      
+        
+        #container{
+          width: 90%;
+          padding: 10px;
+          margin: auto;
+          
+         
+      }
+      .leftmenu{
+         
+          width:30%;
+          scroll-behavior:none;
+          position: fixed;
+          margin-top:100px;
+          
+      }
+      .iconimg{
+       margin-left: 45px;
+      }
+      ul li{
+      list-style-type: none;
+      padding: 10px 0px;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight:400;
+      color: #494949;
+      }
+      .kfcmenu > li{  
+          font-family:'Fira Sans', sans-serif;
+          font-style: normal;
+          font-weight: Bold 700;
+          font-size: 33px;
+          line-height: 43px;
+          color:#212529;
+          font-weight:bolder;
+      }
+        .matchday
+        {
+            font-size:18px;
+            line-height: 24px;
+            color:black;
+            font-weight: 900;
+            font-weight: bold;
+        }
+        .rightside{
+         
+           margin-left:30%;
+           margin-top: 5%;;
+        }
+       
+       
+
+        #form{
+            
+            padding:20px 0px 20px 20px;
+        }
+        #query{
+            margin-top: 60px;
+            border: 0.1px solid #E5E5E5;
+            padding: 10px;
+            border-radius: 25px;
+            width:240px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+        }
+        hr{
+            border: 1px solid black;
+        }
+        #alignhere{
+           
+            padding:20px 20px 20px 20px;
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 30px;
+            justify-content: space-between;    
+            background-color:#F8F7F5;
+            
+            border-radius: 3px;
+        }
+        .kfcimage{
+            border-radius: 3px;
+        }
+        #para1{
+            background-color:#F8F7F5;
+           
+            margin-bottom: 0px !important;
+            margin-top: 40px;
+            padding-left:30px;
+            padding-top: 30px;
+            font-family:'Fira Sans', sans-serif;
+            font-weight:bold ;
+            font-size: 25px;
+           line-height: 25px;
+            border-radius: 3px;
+            
+        }
+        #alignhere2{
+            
+            padding:20px 20px 20px 20px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+            justify-content: space-between;    
+            background-color:white;
+            border-radius: 3px;
+        }
+        #para2{
+            background-color:white;
+          
+            margin-bottom: 0px !important;
+            margin-top: 40px;
+            padding-left:30px;
+            padding-top: 30px;
+            font-family:'Fira Sans', sans-serif;
+            font-weight:bold ;
+            font-size: 25px;
+           line-height: 25px;
+            border-radius: 3px;  
+        }
+        #alignhere3{
+            
+            padding:20px 20px 20px 20px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+            justify-content: space-between;    
+            background-color:white;
+            border-radius: 3px;
+        }
+        #para3,#para4,#para5,#para6,#para7,#para8{
+            background-color:white;
+         
+            margin-bottom: 0px !important;
+            margin-top: 40px;
+            padding-left:30px;
+            padding-top: 30px;
+            font-family:'Fira Sans', sans-serif;
+            font-weight:bold ;
+            font-size: 25px;
+           line-height: 25px;
+            border-radius: 3px;  
+        }
+        #alignhere4,#alignhere5,#alignhere6,#alignhere7,#alignhere8{
+           
+            padding:20px 20px 20px 20px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+            justify-content: space-between;    
+            background-color:white;
+            border-radius: 3px;
+        }
+        .tocart{
+            padding: 0px 10px;
+        }
+        /* Styles for each food item card */
+.menu-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+}
+/* Initially hide the 'Add to Cart' button */
+.add-to-cart-btn {
+    display: none;
+    position: absolute; /* Ensure it sits within the item container */
+    bottom: 15px; /* Adjust the distance from the bottom of the item */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(230, 105, 60);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Show the 'Add to Cart' button when the user hovers over the menu item */
+.menu-item:hover .add-to-cart-btn {
+    display: block;
+}
+
+/* Hover effect */
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the image */
+.menu-item img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Food name styling */
+.menu-item h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #212529;
+    margin: 10px 0;
+}
+
+/* Price and other info styling */
+.menu-item p {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+/* Grid layout for food items */
+.alignhere {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 3px;
+}
+/* General Styling */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Top Menu */
+.topmenu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    position: fixed;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Image */
+.menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto; /* Push the wrapper to the right */
+    position: relative;
+}
+
+
+/* Menu Toggle Icon */
+.menu-toggle {
+    font-size: 24px; /* Adjust icon size */
+    cursor: pointer; /* Show a pointer cursor for clickable effect */
+    display: inline-block;
+}
+
+
+/* Dropdown Menu */
+.dropdown-menu {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    position: fixed; /* Make it cover the entire screen */
+    top: 0; /* Start from the top of the viewport */
+    left: 0; /* Start from the left of the viewport */
+    background-color: rgba(255, 255, 255, 0.95); /* Light background for visibility */
+    display: none; /* Initially hidden */
+    z-index: 1000; /* Ensure it overlays other elements */
+    padding: 20px; /* Add padding if needed */
+    overflow: auto; /* Enable scrolling for large content */
+}
+
+.dropdown-menu.show {
+    display: block; /* Show the menu when this class is added */
+}
+
+
+
+.dropdown-menu h4 {
+    margin: 0;
+    padding: 8px 10px;
+}
+
+.dropdown-menu h4 a {
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-menu h4 a:hover {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+}
+
+/* Adjust the top menu for smaller screens */
+@media (max-width: 768px) {
+    .topmenu {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .topmenu > div {
+        width: auto;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .imgsignin {
+        margin-left: 0;
+    }
+}
+
+/* Adjust left menu for smaller screens */
+@media (max-width: 768px) {
+    .leftmenu {
+        position: static;
+        width: 100%;
+        margin: 0 auto 20px auto;
+        text-align: center;
+    }
+
+    .iconimg {
+        margin: 0 auto;
+    }
+
+    ul.kfcmenu {
+        display: inline-block;
+        padding: 0;
+    }
+}
+
+/* Adjust right side and food items grid */
+@media (max-width: 768px) {
+    .rightside {
+        margin: 20px auto;
+        width: 100%;
+    }
+
+    .alignhere {
+        grid-template-columns: 1fr; /* Single column layout */
+        gap: 15px;
+    }
+
+    .menu-item {
+        padding: 10px;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .topmenu {
+        padding: 5px;
+    }
+
+    #query {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .menu-item img {
+        max-height: 150px;
+    }
+
+    .menu-item h4 {
+        font-size: 18px;
+    }
+
+    .menu-item p {
+        font-size: 14px;
+    }
+}
+
+        
+    </style>
+<body>
+    <div class="topmenu">
+        <!-- Logo -->
+        <div>
+            <img src="{% static 'images/logo.svg' %}" width="148" height="38" alt="Fasteat home">
+        </div>
+
+        <!-- Profile Image and Menu Toggle -->
+        <div class="menu-wrapper">
+            <img class="imgsignin" src="https://images.ctfassets.net/wtodlh47qxpt/6bJdGLRkksNvWP4LI9ZiFF/cb89d6393492fd093e0f99980abfa39e/Account_Icon.svg" alt="Profile">
+            <span class="menu-toggle fa fa-bars"></span>
+        </div>
+
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu">
+            <h4 class="menuname"><a href="{% url 'index' %}" style="text-decoration:none;color:black;">Home</a></h4>
+            <h4><a href="menu.html" style="text-decoration:none;color:black;">Deals</a></h4>
+            <h4><a href="{% url 'logout' %}" style="text-decoration:none;color:black;">Logout</a></h4>
+        </div>
+    </div>
+
+    <div class="paddiv"></div>
+
+    <!-- Rest of the page remains the same -->
+    <section>
+        <div id="container">
+            <div class="leftmenu">
+                <img src="https://online.kfc.co.in/static/media/Stripes_Small_OffersIcon.87fc6256.svg" alt="" class="iconimg">
+                <ul class="kfcmenu">
+                    <li>FASTEAT MENU</li>
+                </ul>
+            </div>
+
+            <div class="rightside">
+                <form id="form"> 
+                    <input type="search" id="query" name="q" placeholder=" Search our menu">
+                </form>
+                <p align="right" class="tocart">
+                    <a class="acart" href="{%url 'view_cart'%}">
+                        <i class="fa fa-shopping-cart" style="font-size:25px;color:red">Cart</i>
+                    </a>
+                </p>
+                <hr></hr>
+                {% for category, items in grouped_menu.items %}
+                <p id="para1">{{ category }}</p>
+                <div class="alignhere">
+                    {% for item in items %}
+                        <a href="#" class="menu-item">
+                            <!-- Display food image if available -->
+                            {% if item.meal_picture %}
+                                <img src="{{ item.meal_picture.url }}" alt="{{ item.foodname }}">
+                            {% else %}
+                                <img src="{% static 'images/default_food.jpg' %}" alt="No image available">
+                            {% endif %}
+                            <h4>{{ item.foodname }}</h4>
+                            <p>₹{{ item.price }}</p>
+                            <p>Preparation time: {{ item.elapse_time }} minutes</p>
+                            <button class="add-to-cart-btn" data-food-id="{{ item.id }}">Add to Cart</button>
+                        </a>
+                    {% empty %}
+                        <p>No items available in this category.</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    menuToggle.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('show'); // Toggle the 'show' class
+    });
+
+    // Optional: Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show'); // Remove 'show' class
+        }
+    });
+    });
+// Attach event listener to the button
+    document.querySelectorAll('.add-to-cart-btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+      const foodItemId = button.getAttribute('data-food-id'); // Get food item ID from button attribute
+      const quantity = 1; // You can modify this if you want to add a way to select quantity
+
+      const data = {
+        food_item_id: foodItemId,
+        quantity: quantity
+      };
+
+      // Send AJAX request to add item to cart
+      fetch("{% url 'add_to_cart' %}", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': '{{ csrf_token }}', // Include CSRF token for security
+        },
+        body: JSON.stringify(data) // Serialize the data to JSON
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          //alert('Item added to cart!');
+        } else {
+          //alert('Failed to add item to cart. Error: ' + data.error);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while adding the item to the cart.');
+      });
+    });
+  });
+</script>
+</body>
+</html>

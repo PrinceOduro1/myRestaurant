@@ -1,0 +1,319 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f0f0f0, #e5f0ff);
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Left Section Styles */
+.left-section, .right-section {
+    padding: 20px;
+}
+
+.left-section {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white; /* Light Green */
+    text-align: center;
+}
+
+.animated-heading {
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #FFA500; /* Yellow */
+    animation: fadeIn 2s ease-in-out;
+}
+
+.description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    padding: 12px 20px;
+    border: 2px solid #FFD700; /* Yellow */
+    border-radius: 90px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-field:focus {
+    border-color: #FFA500; /* Darker Yellow */
+}
+
+.submit-button {
+    background-color: #FFD700; /* Yellow */
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 90px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+    background-color: #FFA500; /* Darker Yellow */
+    transform: scale(1.05);
+}
+
+/* Right Section Styles */
+.right-section {
+    flex: 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.transition-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.transition-image:first-child {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.blinking-cursor {
+    font-weight: 100;
+    font-size: 50px;
+    color: #FFD700; /* Yellow */
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+        color: #FFD700; /* Yellow */
+    }
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    border: none;
+    color: white;
+    padding: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 1%;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.back-button:hover {
+    transform: scale(1.25);
+    color: #FFD700; /* Yellow */
+}
+
+.already-signed-up {
+    font-size: 14px;
+    color: #777;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    gap: 5px;
+}
+
+a {
+    font-size: 14px;
+    color: #FFA500;  
+    text-decoration: none; 
+    display: inline-block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .right-section {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .transition-image {
+        object-fit: contain;
+    }
+
+    .animated-heading {
+        font-size: 36px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .login-form {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .submit-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .back-button {
+        font-size: 14px;
+    }
+
+    .already-signed-up {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .animated-heading {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .submit-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+/* Responsive Design for iPhone 11 Pro (max-width: 375px) */
+@media (max-width: 375px) {
+    .container {
+        flex-direction: column;
+        border-radius: 0;
+        box-shadow: none; /* Remove the shadow to avoid cluttering on mobile */
+    }
+
+    .left-section {
+        flex: 1;
+        text-align: center;
+    }
+
+    .right-section {
+        flex: 1;
+        height: 200px; /* Adjust the height */
+        padding: 0;
+        display: block; /* Ensures images stack properly */
+    }
+
+    .transition-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 1;
+    }
+
+    .login-form {
+        width: 90%;
+        max-width: none; /* Ensure it occupies more width */
+        margin-bottom: 10px;
+    }
+
+    .animated-heading {
+        font-size: 28px; /* Reduce heading size for mobile */
+        margin-bottom: 10px;
+    }
+
+    .description {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .submit-button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .back-button {
+        font-size: 14px;
+        padding: 10px; /* Make button bigger for easier access */
+    }
+
+    .already-signed-up {
+        font-size: 12px;
+        gap: 3px;
+    }
+}

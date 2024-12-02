@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <!-- Link to Bootstrap and Custom Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .cart-hero-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .cart-container {
+            flex: 1;
+            min-width: 50%;
+            padding: 20px;
+        }
+        .cart-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .total-price {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .order-now-btn {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin: 20px auto;
+            max-width: 200px;
+        }
+        .order-now-btn:hover {
+            background-color: #0056b3;
+        }
+        .hero-banner {
+            flex: 0 0 40%;
+            max-width: 40%;
+            position: relative;
+            text-align: center;
+        }
+        .hero-banner img {
+            max-width: 100%;
+            height: auto;
+        }
+        .hero-banner img.shape {
+            position: absolute;
+        }
+        .hero-banner .shape-1 {
+            top: 10%;
+            left: 5%;
+        }
+        .hero-banner .shape-2 {
+            bottom: 10%;
+            right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'images/logo.svg' %}" alt="YourBrand Logo" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'index'%}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart and Hero Banner Section -->
+    <div class="cart-hero-wrapper">
+        <!-- Cart Content -->
+        <div class="cart-container">
+            <h1 class="text-center mb-4" style="font-weight: bold;">Your Cart</h1>
+            
+            {% if cart_items %}
+                {% for item in cart_items %}
+                    <div class="cart-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 style="font-weight: bold;">{{ item.food_item.foodname }}</h5>
+                            <p>Price: ${{ item.food_item.price }}</p>
+                            <p>Quantity: {{ item.quantity }}</p>
+                            <a href="{% url 'create_order' %}?order_id={{ order.id }}" class="order-now-btn text-center">Order Now</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                
+                <div class="total-price">
+                    Total Price: <span>${{ total_price }}</span>
+                </div>
+                
+                <!-- Order Now Button -->
+                <a href="{% url 'create_order' %}?order_id={{ order.id }}" class="order-now-btn text-center">Order Now</a>
+            {% else %}
+                <p class="text-center">Your cart is empty!</p>
+            {% endif %}
+        </div>
+
+        <!-- Hero Banner -->
+        <figure class="hero-banner">
+            <img src="{% static 'images/hero-banner.png' %}" alt="hero banner">
+            <img src="{% static 'images/hero-shape-1.svg' %}" width="100" height="50" alt="shape" class="shape shape-1">
+            <img src="{% static 'images/hero-shape-2.svg' %}" width="80" height="30" alt="shape" class="shape shape-2">
+        </figure>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+        }
+
+        .payment-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .payment-amount {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #card-element {
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+
+        #card-errors {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .pay-button:hover {
+            background-color: #0056b3;
+        }
+        /* Style for the Order Now button */
+.order-now-btn {
+    display: inline-block; /* Ensures the button behaves like an inline element but can have padding */
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: white; /* Text color */
+    padding: 12px 30px; /* Top-bottom and left-right padding */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline from the link */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+}
+
+.order-now-btn:hover {
+    background-color: #0056b3; /* Darker shade of blue when hovered */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.order-now-btn:active {
+    background-color: #003366; /* Even darker shade when button is clicked */
+    transform: scale(0.98); /* Slightly shrink the button when clicked */
+}
+
+.order-now-btn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Add custom focus ring */
+}
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="{% static 'images/logo.svg'%}" width="148" height="38" alt="Fasteat home">
+              </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'menu'%}">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="payment-container">
+        <h1 class="payment-title">Complete Your Payment</h1>
+        <p class="payment-amount">Total Amount: ${{ order.total_amount }}</p>
+
+        <!-- Stripe Elements will render the card input field here -->
+        <div id="card-element"></div>
+        <div id="card-errors" role="alert"></div> <!-- Display errors here -->
+
+        <a href="{% url 'payment_success' %}" class="order-now-btn text-center">Order Now</a>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Stripe JS -->
+    <script>
+        // Get the client secret (passed from the backend)
+        const clientSecret = "{{ client_secret }}";  // This comes from your backend
+
+        // Initialize Stripe.js with your publishable key
+        const stripe = Stripe("{{ stripe_publishable_key }}");  // Use your Stripe public key here
+        const elements = stripe.elements();
+
+        // Create an instance of the card element
+        const card = elements.create('card');
+        card.mount('#card-element');  // Mount the card element into the DOM
+
+        // Handle the form submission when the user clicks "Pay Now"
+        document.getElementById("pay-button").addEventListener("click", async () => {
+            // Make a request to the backend to create the PaymentIntent and get the client_secret
+            const response = await fetch(`/create-payment/?order_id={{ order.id }}`, {
+                method: "GET",
+            });
+            const data = await response.json();
+
+            if (data.client_secret) {
+                // Use the client_secret to confirm the payment with the card details entered
+                stripe.confirmCardPayment(data.client_secret, {
+                    payment_method: {
+                        card: card,  // Card details
+                    }
+                }).then((result) => {
+                    if (result.error) {
+                        // If the payment failed, display the error message
+                        document.getElementById('card-errors').textContent = result.error.message;
+                    } else if (result.paymentIntent.status === "succeeded") {
+                        // If payment is successful, show a success message and redirect
+                        alert("Payment Successful!");
+                        window.location.href = "/payment-success/";  // Redirect to success page
+                    }
+                });
+            } else {
+                alert("Unable to create payment.");
+            }
+        });
+    </script>
+</body>
+</html>
